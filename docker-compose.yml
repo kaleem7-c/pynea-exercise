@@ -1,0 +1,18 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "4000:4000"
+    environment:
+      PORT: 4000
+      POKEAPI_BASE_URL: https://pokeapi.co/api/v2
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      GRAPHQL_URL: http://backend:4000/graphql
+    depends_on:
+      - backend
